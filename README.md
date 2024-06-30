@@ -2,26 +2,26 @@
 This is a full-stack e-commerce application built using the MERN stack (MongoDB, Express.js, React, Node.js) and Redux for state management. It includes features like product listings, user authentication, shopping cart, and order management.
 
 ## Features
-User authentication and authorization\n
-Product listing and search\n
-Shopping cart\n
-Order placement and management\n
-Admin dashboard for product and order management\n
+User authentication and authorization
+Product listing and search
+Shopping cart
+Order placement and management
+Admin dashboard for product and order management
 
 ## Tech Stack
 ## Frontend:
 
-React\n
-Redux\n
-React Router\n
-Axios\n
+React
+Redux
+React Router
+Axios
 
 ## Backend:
 
-Node.js\n
-Express.js\n
-MongoDB\n
-Mongoose\n
+Node.js
+Express.js
+MongoDB
+Mongoose
 
 ## Others:
 
