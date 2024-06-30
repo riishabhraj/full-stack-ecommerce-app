@@ -1,0 +1,34 @@
+/* src/components/ProductsPage.css */
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-item {
+  margin-bottom: 7px;
+}
+
+.category-link {
+  text-decoration: none;
+  color: inherit;
+  padding: 4px 4px;
+  margin: 0px auto;
+  display: block;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.category-link:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.product-item {
+  transition: transform 0.3s;
+}
+
+.product-item:hover {
+  transform: scale(1.05);
+}
