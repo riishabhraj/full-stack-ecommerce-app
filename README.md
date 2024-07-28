@@ -7,7 +7,6 @@ Product listing and search
 Shopping cart
 Order placement and management
 Admin dashboard for product and order management
-Responsive design
 
 ## Tech Stack
 ## Frontend:
@@ -23,6 +22,7 @@ Node.js
 Express.js
 MongoDB
 Mongoose
+
 ## Others:
 
 JWT for authentication
