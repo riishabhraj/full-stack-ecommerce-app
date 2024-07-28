@@ -1,1 +1,5 @@
 database
+.env
+env 
+
+node_modules
