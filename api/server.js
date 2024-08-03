@@ -21,7 +21,6 @@ app.use("/api/seller", sellerRoute);
 app.use("/api", productRoute);
 app.use("/api", orderRoute);
 const __dirname = path.resolve();
-const amit = "amit";
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.get("*", (req, res) => {

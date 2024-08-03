@@ -43,7 +43,6 @@ export default function SellerSignUp() {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    a;
     try {
       setLoading(true);
       const formData = new FormData(event.currentTarget);
