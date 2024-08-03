@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 const EditProduct = () => {
   const { currentUser } = useSelector((state) => state.seller);
   const { productId } = useParams();
+  const [files, setFiles] = useState([]);
   const [productData, setProductData] = useState({
     title: "",
     description: "",
