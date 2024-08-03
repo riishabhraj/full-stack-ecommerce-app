@@ -19,15 +19,15 @@ services:
     networks:
       - test
 
-  mongodb:
-    image: mongo
-    restart: always
-    networks:
-      - test
-    ports:
-      - 27018:27017
-    volumes:
-      - ./database:/data/db
+  # mongodb:
+  #   image: mongo
+  #   restart: always
+  #   networks:
+  #     - test
+  #   ports:
+  #     - 27018:27017
+  #   volumes:
+  #     - ./database:/data/db
 
 networks:
   test:
