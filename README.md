@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/aab4e882-37b7-44d5-90e1-72ebe2cd45a0)# MYeSTORE 
+# MYeSTORE 
 
 This is a small application in MVC Strucutre. A seller can add, update products and users can view products, add products to cart.
 Project is live at [MYeSTORE](https://full-stack-ecommerce-app-wtkz.onrender.com "MYeSTORE's Homepage")
