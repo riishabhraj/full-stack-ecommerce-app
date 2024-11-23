@@ -33,8 +33,6 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function SellerSignUp() {
@@ -66,7 +64,7 @@ export default function SellerSignUp() {
       }
       setLoading(false);
       setError(null);
-      navigate("/sign-in");
+      navigate("/seller/sign-in");
     } catch (error) {
       setLoading(false);
       setError(error.message);

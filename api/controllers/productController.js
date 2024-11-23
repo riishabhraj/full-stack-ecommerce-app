@@ -44,7 +44,7 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-
+  
 export const getProduct = async (req, res) => {
   try {
     const { id } = req.params;

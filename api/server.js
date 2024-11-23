@@ -7,8 +7,12 @@ import orderRoute from "./routes/order.js";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import path from "path";
+import cors from 'cors';
+
 const app = express();
 const PORT = 3000;
+
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -20,6 +24,7 @@ app.use("/api/customer", customerRoute);
 app.use("/api/seller", sellerRoute);
 app.use("/api", productRoute);
 app.use("/api", orderRoute);
+
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
