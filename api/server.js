@@ -7,6 +7,7 @@ import orderRoute from "./routes/order.js";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import Product from "./models/product.js";
+import dotenv from 'dotenv'
 import path from "path";
 import cors from 'cors';
 import Stripe from "stripe"; // Adjust the path to your Product model
@@ -14,7 +15,7 @@ import Stripe from "stripe"; // Adjust the path to your Product model
 const router = express.Router()
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-
+dotenv.config()
 const app = express();
 const PORT = 3000;
 
