@@ -6,8 +6,14 @@ import productRoute from "./routes/product.js";
 import orderRoute from "./routes/order.js";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
+import Product from "./models/product.js";
 import path from "path";
 import cors from 'cors';
+import Stripe from "stripe"; // Adjust the path to your Product model
+
+const router = express.Router()
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
 
 const app = express();
 const PORT = 3000;
@@ -24,6 +30,57 @@ app.use("/api/customer", customerRoute);
 app.use("/api/seller", sellerRoute);
 app.use("/api", productRoute);
 app.use("/api", orderRoute);
+
+// Function to fetch product from the database
+const getProductFromDB = async (productId) => {
+  try {
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      throw new Error("Product not found");
+    }
+
+    return product;
+  } catch (error) {
+    console.error("Error fetching product from database:", error.message);
+    throw error;
+  }
+};
+
+// Stripe checkout session route
+router.post("/create-checkout-session", async (req, res) => {
+  const { productId, quantity } = req.body;
+
+  try {
+    const product = await getProductFromDB(productId);
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: product.title,
+              description: product.description,
+            },
+            unit_amount: product.price * 100, // Stripe uses smallest currency unit
+          },
+          quantity,
+        },
+      ],
+      mode: "payment",
+      success_url: "http://localhost:3000/success",
+      cancel_url: "http://localhost:3000/cancel",
+    });
+
+    console.log(session.url)
+    res.json({ url: session.url });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "../client/dist")));

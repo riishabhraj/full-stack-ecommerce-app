@@ -73,6 +73,22 @@ const ProductDetail = () => {
     dispatch(addToCart({ product, quantity }));
   };
 
+  const handleOrderNow = async () => {
+    try {
+      const response = await axios.post(`/api/create-checkout-session`, {
+        productId: id,
+        quantity,
+      });
+      console.log(response);
+
+      if (response.data.url) {
+        window.location.href = response.data.url; // Redirect to Stripe Checkout
+      }
+    } catch (error) {
+      console.error("Error creating checkout session:", error.message);
+    }
+  };
+
   return (
     <Container sx={{ marginTop: 5 }}>
       <div className="flex justify-center flex-col md:flex-row">
@@ -127,7 +143,7 @@ const ProductDetail = () => {
               <p className="text-slate-500">stock: {product.stock}</p>
             </div>
             <div className="mt-10 flex space-x-4">
-              <Button variant="contained">Buy Now</Button>
+              <Button onClick={handleOrderNow} variant="contained">Buy Now</Button>
               <Button onClick={handleAddToCart} variant="outlined">
                 Add to Cart
               </Button>

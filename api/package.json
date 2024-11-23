@@ -24,6 +24,7 @@
     "mongoose": "^8.4.0",
     "nodemon": "^3.1.0",
     "path": "^0.12.7",
-    "redux-persist": "^6.0.0"
+    "redux-persist": "^6.0.0",
+    "stripe": "^17.4.0"
   }
 }
