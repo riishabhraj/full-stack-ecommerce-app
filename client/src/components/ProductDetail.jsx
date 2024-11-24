@@ -76,7 +76,7 @@ const ProductDetail = () => {
   const handleOrderNow = async () => {
     try {
       const response = await axios.post(`/api/create-checkout-session`, {
-        productId: id,
+        productId: product._id,
         quantity,
       });
       console.log(response);

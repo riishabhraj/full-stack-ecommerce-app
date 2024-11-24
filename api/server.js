@@ -13,7 +13,6 @@ import cors from 'cors';
 import Stripe from "stripe"; // Adjust the path to your Product model
 
 dotenv.config()
-const router = express.Router()
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
@@ -31,7 +30,7 @@ app.use("/api/customer", customerRoute);
 app.use("/api/seller", sellerRoute);
 app.use("/api", productRoute);
 app.use("/api", orderRoute);
-
+// app.use("/")
 // Function to fetch product from the database
 const getProductFromDB = async (productId) => {
   try {
@@ -41,6 +40,7 @@ const getProductFromDB = async (productId) => {
       throw new Error("Product not found");
     }
 
+    console.log(product)
     return product;
   } catch (error) {
     console.error("Error fetching product from database:", error.message);
@@ -49,7 +49,7 @@ const getProductFromDB = async (productId) => {
 };
 
 // Stripe checkout session route
-router.post("/create-checkout-session", async (req, res) => {
+app.post("/create-checkout-session", async (req, res) => {
   const { productId, quantity } = req.body;
 
   try {
@@ -63,7 +63,6 @@ router.post("/create-checkout-session", async (req, res) => {
             currency: "usd",
             product_data: {
               name: product.title,
-              description: product.description,
             },
             unit_amount: product.price * 100, // Stripe uses smallest currency unit
           },
@@ -71,8 +70,8 @@ router.post("/create-checkout-session", async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: "http://localhost:3000/success",
-      cancel_url: "http://localhost:3000/cancel",
+      success_url: "http://localhost:5173/success",
+      cancel_url: "http://localhost:5173/cancel",
     });
 
     console.log(session.url)
