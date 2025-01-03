@@ -13,7 +13,7 @@ import cors from 'cors';
 import Stripe from "stripe"; // Adjust the path to your Product model
 
 dotenv.config()
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const PORT = 3000;
@@ -32,54 +32,54 @@ app.use("/api", productRoute);
 app.use("/api", orderRoute);
 // app.use("/")
 // Function to fetch product from the database
-const getProductFromDB = async (productId) => {
-  try {
-    const product = await Product.findById(productId);
+// const getProductFromDB = async (productId) => {
+//   try {
+//     const product = await Product.findById(productId);
 
-    if (!product) {
-      throw new Error("Product not found");
-    }
+//     if (!product) {
+//       throw new Error("Product not found");
+//     }
 
-    console.log(product)
-    return product;
-  } catch (error) {
-    console.error("Error fetching product from database:", error.message);
-    throw error;
-  }
-};
+//     console.log(product)
+//     return product;
+//   } catch (error) {
+//     console.error("Error fetching product from database:", error.message);
+//     throw error;
+//   }
+// };
 
 // Stripe checkout session route
-app.post("/create-checkout-session", async (req, res) => {
-  const { productId, quantity } = req.body;
+// app.post("/create-checkout-session", async (req, res) => {
+//   const { productId, quantity } = req.body;
 
-  try {
-    const product = await getProductFromDB(productId);
+//   try {
+//     const product = await getProductFromDB(productId);
 
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items: [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: product.title,
-            },
-            unit_amount: product.price * 100, // Stripe uses smallest currency unit
-          },
-          quantity,
-        },
-      ],
-      mode: "payment",
-      success_url: "http://localhost:5173/success",
-      cancel_url: "http://localhost:5173/cancel",
-    });
+//     const session = await stripe.checkout.sessions.create({
+//       payment_method_types: ["card"],
+//       line_items: [
+//         {
+//           price_data: {
+//             currency: "usd",
+//             product_data: {
+//               name: product.title,
+//             },
+//             unit_amount: product.price * 100, // Stripe uses smallest currency unit
+//           },
+//           quantity,
+//         },
+//       ],
+//       mode: "payment",
+//       success_url: "http://localhost:5173/success",
+//       cancel_url: "http://localhost:5173/cancel",
+//     });
 
-    console.log(session.url)
-    res.json({ url: session.url });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+//     console.log(session.url)
+//     res.json({ url: session.url });
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// });
 
 
 const __dirname = path.resolve();
